@@ -43,7 +43,6 @@ reg add "HKCU\Software\Microsoft\Internet Explorer\PhishingFilter" /v "EnabledV9
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v "NoRecentDocsHistory" /t REG_DWORD /d 1 /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\CompatTelRunner.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\DeviceCensus.exe" /v Debugger /t REG_SZ /d "%windir%\System32\taskkill.exe" /f
-
 ```
 
 Press Win+R, type regedit, press enter, and navigate to _HKEY\_LOCAL\_MACHINE\SYSTEM\CurrentControlSet\Services_
@@ -56,7 +55,9 @@ Here we need to locate the follwing keys:
 
 These keys have messed up permissions. To delete them, we must fix them, here's a video showing how to do it:
 
-[https://fdossena.com/w10debotnet/delkey.webm](https://fdossena.com/w10debotnet/delkey.webm)
+{% embed url="https://fdossena.com/w10debotnet/delkey.webm" %}
+
+But don't type "Garrus" and instead type your windows account name which can be found via opening the settings and looking at the top of the settings app.
 
 Right click the key and select Permissions, then click Advanced, change the Owner to your username, check "Replace owner on subcontainers and objects" and "Replace all child object permission entries with inheritable permission entries from this object", if inheritance is enabled, disable it and convert to explicit permissions, apply, remove all the permission entries and add one for your username with Full control, confirm everything and delete the key.\
 Repeat for the 3 keys and you're done.

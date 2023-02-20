@@ -4,13 +4,13 @@
 
 ### Tools that are required for this Process:
 
-install\_wim\_tweak.exe: [Download it here](https://github.com/Espionage724/Windows/raw/master/install\_wim\_tweak/install\_wim\_tweak.exe) and move/copy it into _C:\Windows\System32_
+install\_wim\_tweak.exe: [Download it here](https://thatssomeboats.boats/stuff/install\_wim\_tweak.exe) and move/copy it into _C:\Windows\System32_
 
 ## The Removing
 
 ### Windows Defender
 
-Open Group Policy Editor via _gpedit.msc_ and navigate to _Computer Configuration > Administrative Templates > Windows Components > Microsoft Defender Antivirus_.\
+Open Group Policy Editor via pressing Win+R and typing _gpedit.msc,_ navigate to _Computer Configuration > Administrative Templates > Windows Components > Microsoft Defender Antivirus_.\
 \
 Double-click on "Turn off Microsoft Defender Antivirus".\
 \
@@ -25,21 +25,25 @@ You can ignore any error that pops up.
 
 Command Prompt:
 
-`install_wim_tweak /o /c Microsoft-Windows-ContentDeliveryManager /r`\
-`install_wim_tweak /o /c Microsoft-Windows-Store /r`\
-`reg add "HKLM\Software\Policies\Microsoft\WindowsStore" /v RemoveWindowsStore /t REG_DWORD /d 1 /f`\
-`reg add "HKLM\Software\Policies\Microsoft\WindowsStore" /v DisableStoreApps /t REG_DWORD /d 1 /f`\
-`reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /t REG_DWORD /d 0 /f`\
-`reg add "HKLM\SOFTWARE\Policies\Microsoft\PushToInstall" /v DisablePushToInstall /t REG_DWORD /d 1 /f`\
-`reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f`\
-`sc delete PushToInstall`
+```
+install_wim_tweak /o /c Microsoft-Windows-ContentDeliveryManager /r
+install_wim_tweak /o /c Microsoft-Windows-Store /r
+reg add "HKLM\Software\Policies\Microsoft\WindowsStore" /v RemoveWindowsStore /t REG_DWORD /d 1 /f
+reg add "HKLM\Software\Policies\Microsoft\WindowsStore" /v DisableStoreApps /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /t REG_DWORD /d 0 /f
+reg add "HKLM\SOFTWARE\Policies\Microsoft\PushToInstall" /v DisablePushToInstall /t REG_DWORD /d 1 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SilentInstalledAppsEnabled /t REG_DWORD /d 0 /f
+sc delete PushToInstall
+```
 
 ### **Music, TV, etc.**
 
 Powershell:
 
-`Get-AppxPackage -AllUsers *zune* | Remove-AppxPackage`\
-`Get-WindowsPackage -Online | Where PackageName -like *MediaPlayer* | Remove-WindowsPackage -Online -NoRestart`
+```
+Get-AppxPackage -AllUsers *zune* | Remove-AppxPackage
+Get-WindowsPackage -Online | Where PackageName -like *MediaPlayer* | Remove-WindowsPackage -Online -NoRestart
+```
 
 ### **Xbox and Game DVR**
 
@@ -49,15 +53,16 @@ You can ignore any error that pops up.
 
 Command Prompt:
 
-`sc delete XblAuthManager`\
-`sc delete XblGameSave`\
-`sc delete XboxNetApiSvc`\
-`sc delete XboxGipSvc`\
-`reg delete "HKLM\SYSTEM\CurrentControlSet\Services\xbgm" /f`\
-`schtasks /Change /TN "Microsoft\XblGameSave\XblGameSaveTask" /disable`\
-`schtasks /Change /TN "Microsoft\XblGameSave\XblGameSaveTaskLogon" /disable`\
-`reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f`\
-Additionally, go to Start > Settings > Gaming and turn off everything.
+```
+sc delete XblAuthManager
+sc delete XblGameSave
+sc delete XboxNetApiSvc
+sc delete XboxGipSvc
+reg delete "HKLM\SYSTEM\CurrentControlSet\Services\xbgm" /f
+schtasks /Change /TN "Microsoft\XblGameSave\XblGameSaveTask" /disable
+schtasks /Change /TN "Microsoft\XblGameSave\XblGameSaveTaskLogon" /disable
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f
+```
 
 ### **Sticky Notes**
 
@@ -69,26 +74,32 @@ You can ignore any error that pops up. Alternative: [Notebot](http://fdossena.co
 
 Powershell: `Get-AppxPackage -AllUsers *maps* | Remove-AppxPackage`
 
-Command Prompt:\
-`sc delete MapsBroker`\
-`sc delete lfsvc`\
-`schtasks /Change /TN "\Microsoft\Windows\Maps\MapsUpdateTask" /disable`\
-`schtasks /Change /TN "\Microsoft\Windows\Maps\MapsToastTask" /disable`
+Command Prompt:
+
+```
+sc delete MapsBroker
+sc delete lfsvc
+schtasks /Change /TN "\Microsoft\Windows\Maps\MapsUpdateTask" /disable
+schtasks /Change /TN "\Microsoft\Windows\Maps\MapsToastTask" /disable
+```
 
 ### **Alarms and Clock**
 
 Powershell:
 
-`Get-AppxPackage -AllUsers *alarms* | Remove-AppxPackage`\
-`Get-AppxPackage -AllUsers *people* | Remove-AppxPackage`\
-You can ignore any error that pops up.
+```
+Get-AppxPackage -AllUsers *alarms* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *people* | Remove-AppxPackage
+```
 
 ### **Mail, Calendar, ...**
 
 Powershell:
 
-`Get-AppxPackage -AllUsers *comm* | Remove-AppxPackage`\
-`Get-AppxPackage -AllUsers *mess* | Remove-AppxPackage`
+```
+Get-AppxPackage -AllUsers *comm* | Remove-AppxPackage
+Get-AppxPackage -AllUsers *mess* | Remove-AppxPackage
+```
 
 You can ignore any error that pops up.
 
@@ -127,7 +138,10 @@ Alternatives: ~~Audacity~~ [Tenacity](https://tenacityaudio.org/)
 
 ### **Microsoft Edge**
 
-Dosen't work anymore\
+Open regedit with Win+R and navigate to: _HKEY\_LOCAL\_MACHINE\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\ClientState\\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062}_ and __ delete __ the _"experiment\_control\_labels"_ value. After that run `Set-Location "C:\Program Files (x86)\Microsoft\Edge\Application\1*\Installer" ; .\setup.exe -uninstall -system-level -verbose-logging -force-uninstall` in Powershell, reboot, and Microsoft Edge should be removed.
+
+The Microsoft Edge entry in the Start Menu will stay and to my knowledge it can't be removed.
+
 Alternatives: [Firefox](http://www.firefox.com/) | [Chromium](http://chromium.woolyss.com/)
 
 ### **Contact Support, Get Help**
@@ -140,7 +154,9 @@ Additionally, Go to _Start > Settings > Apps > Manage optional features_, and re
 
 ### **Microsoft Quick Assist**
 
-Get-WindowsPackage -Online | Where PackageName -like \*QuickAssist\* | Remove-WindowsPackage -Online -NoRestart\
+Powershell:
+
+`Get-WindowsPackage -Online | Where PackageName -like *QuickAssist* | Remove-WindowsPackage -Online -NoRestart`\
 
 
 ### **Connect**
@@ -165,8 +181,10 @@ Command Prompt:
 
 Command Prompt:
 
-`for /f "tokens=1* delims=" %I in (' reg query "HKEY_CLASSES_ROOT\SystemFileAssociations" /s /k /f "3D Edit" ^| find /i "3D Edit" ') do (reg delete "%I" /f )`\
-`for /f "tokens=1* delims=" %I in (' reg query "HKEY_CLASSES_ROOT\SystemFileAssociations" /s /k /f "3D Print" ^| find /i "3D Print" ') do (reg delete "%I" /f )`
+```
+for /f "tokens=1* delims=" %I in (' reg query "HKEY_CLASSES_ROOT\SystemFileAssociations" /s /k /f "3D Edit" ^| find /i "3D Edit" ') do (reg delete "%I" /f )
+for /f "tokens=1* delims=" %I in (' reg query "HKEY_CLASSES_ROOT\SystemFileAssociations" /s /k /f "3D Print" ^| find /i "3D Print" ') do (reg delete "%I" /f )
+```
 
 ### Disabling Cortana
 
@@ -174,6 +192,8 @@ With the Anniversary Update, Microsoft hid the option to disable Cortana.\
 Warning: Do not attempt to remove the Cortana package using install\_wim\_tweak or the PowerShell, as it will break Windows Search and you will have to reinstall Windows!\
 Command Prompt:
 
-`reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f`\
-`reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules" /v "{2765E0F4-2918-4A46-B9C9-43CDD8FCBA2B}" /t REG_SZ /d "BlockCortana|Action=Block|Active=TRUE|Dir=Out|App=C:\windows\systemapps\microsoft.windows.cortana_cw5n1h2txyewy\searchui.exe|Name=Search and Cortana application|AppPkgId=S-1-15-2-1861897761-1695161497-2927542615-642690995-327840285-2659745135-2630312742|" /f`\
-`reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v BingSearchEnabled /t REG_DWORD /d 0 /f`
+```
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v AllowCortana /t REG_DWORD /d 0 /f
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules" /v "{2765E0F4-2918-4A46-B9C9-43CDD8FCBA2B}" /t REG_SZ /d "BlockCortana|Action=Block|Active=TRUE|Dir=Out|App=C:\windows\systemapps\microsoft.windows.cortana_cw5n1h2txyewy\searchui.exe|Name=Search and Cortana application|AppPkgId=S-1-15-2-1861897761-1695161497-2927542615-642690995-327840285-2659745135-2630312742|" /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" /v BingSearchEnabled /t REG_DWORD /d 0 /f
+```
