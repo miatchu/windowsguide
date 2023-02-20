@@ -4,7 +4,7 @@
 
 ### Tools that are required for this Process:
 
-install\_wim\_tweak.exe: [Download it here](https://thatssomeboats.boats/stuff/install\_wim\_tweak.exe) and move/copy it into _C:\Windows\System32_
+install\_wim\_tweak.exe:[ Download it here](http://thatssomeboats.boats/stuff/install\_wim\_tweak.exe) and move/copy it into _C:\Windows\System32_
 
 ## The Removing
 
