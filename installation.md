@@ -1,6 +1,6 @@
 # Installation
 
-The Installation is pretty selfexplanatory, when reaching the OOBE (Out-of-box experience), setup your Region, keyboard layout and Network-config, at Account, setup an Offline account and deny any crap until your asked how/if you want to customize your device skip it and choose Required at the diagnosics settings.
+The Installation is pretty selfexplanatory, when reaching the OOBE (Out-of-box experience), setup your Region, keyboard layout and Network-config, at Account setup an Offline account and deny any crap until your asked how/if you want to customize your device skip it and choose Required at the diagnosics settings.
 
 That's it.
 
